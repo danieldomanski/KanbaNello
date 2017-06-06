@@ -1,0 +1,22 @@
+<div class="container bg-img">
+  <form role="form" class="form-horizontal col-lg-12 col-xs-8 col-xs-offset-2 col-lg-offset-0 form-container" ng-submit="addUser()">
+    <h4 align="center" class="password-error" ng-show="signupError">{{signupError}}</h4>
+    <fieldset class="vcenter">
+      <h1 class="signup-title">Rejestracja</h1>
+      <div class="form-container">
+        <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="nick" tabindex="1" ng-model="user.nickname">
+      </div>
+      <div class="form-container">
+        <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Adres e-mail" tabindex="4" ng-model="user.email">
+      </div>
+      <div class="form-container form-password">
+        <input type="password" name="password" id="password" class="pw-input" placeholder="Hasło" tabindex="5" ng-model="user.password">
+        <input type="password" name="password" id="password" class="pw-input" placeholder="Powtórz Hasło" tabindex="5" ng-model="user.confirmPassword">
+      </div>
+      <div class="form-container">
+          <a ui-sref="index"><button class="btn btn-default">Anuluj</button></a>
+          <button type="submit" class="btn btn-primary">Potwierdź</button>
+      </div>
+      <a ui-sref="login" class="signup-login">Zaloguj...</a>
+  </form>
+</div>

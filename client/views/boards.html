@@ -1,0 +1,94 @@
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-collapse collapse nav-projects" id="navbar-main">
+        <div class="navbar-header">
+            <a href="/" class="navbar-brand">KanbaNello</a>
+            <a class="btn btn-default-outline sidebar-toggle" ng-click="isCollapsedHorizontal = !isCollapsedHorizontal">
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+            </a>
+            <a class="btn btn-default-outline user-profile">
+                <span class="glyphicon glyphicon-user"></span>
+                <p>Witaj, {{username}}!</p>
+            </a>
+            <ul class="user-dropdown" ng-controller="LogoutController">
+              <li><a href="settings">Ustawienia</a></li>
+              <li><a ui-sref="projects">Zadania</a></li>
+              <li><a ng-click="logout()">Wyloguj</a></li>
+            </ul>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+            </button>
+        </div>
+    </div>
+</div>
+<aside class="sidebar horizontal-collapse" uib-collapse="isCollapsedHorizontal" horizontal>
+    <ul class="sidebar-nav">
+        <li>
+            <uib-accordion close-others="oneAtATime">
+              <button ui-sref="projects" type="button" class="btn btn-default-outline" aria-label="Left Align">
+                      <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                  </button>
+                <div class="tile-header">
+                    <a ui-sref="projects" class="tile-title">Lista zadan do wykonania</a>
+                    <ul>
+                      <li ng-repeat="projekt in projekty track by $index" class="sidebar-project-item"><a href="#!/boards?id={{projekt._id}}"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>{{projekt.name}}</a></li>
+                    </ul>
+                </div>
+            </uib-accordion>
+        </li>
+    </ul>
+</aside>
+
+<div class="main-content" ng-class="{'padLeft': isActive}">
+    <div class="board-heading">
+        <h1 ng-show="!editing">{{project.name}}</h1>
+        <input type="text" ng-model="projectTitle" ng-show="editing" class="editing-heading-input">
+        <span class="glyphicon glyphicon-pencil" aria-hidden="true" ng-click="editing = !editing"></span>
+
+    </div>
+
+    <div class="add-task">
+        <form role="form" ng-submit="createSubtask()" class="add-task-form">
+            <div class="input-group">
+                <input type="text" ng-model="formData.list_title" placeholder="Dodaj nowe podzadanie" class="form-control">
+                <span class="input-group-btn">
+            <input type="submit" class="btn btn-primary" value="Dodaj podzadanie">
+          </span>
+            </div>
+        </form>
+    </div>
+
+    <div class="task-container" dnd-list="lista">
+        <section class="list-content ng-scope animate-repeat" ng-repeat="list in lista" dnd-draggable="list" dnd-moved="lista.splice($index, 1)" dnd-callback="lista.length" dnd-effect-allowed="move">
+            <div class="box" dnd-nodrag>
+                <div class="box-header" dnd-handle>
+                    <p class="box-header-text">{{list.name}}</p>
+                    <div class="box-header-buttons">
+                        <button type="button" class="btn btn-default-outline" aria-label="Left Align">
+
+                      </button>
+                        <button type="button" class="btn btn-default-outline" aria-label="Left Align" ng-click="deleteSubtask(list)">
+                          <span class="glyphicon glyphicon-remove"></span>
+                       </button>
+                    </div>
+                </div>
+                <div class="box-body" dnd-nodrag>
+                    <ul class="box-body__tasks">
+                        <li class="tasks__item" ng-repeat="task in list.todos track by $index">
+                            <p>{{task}}</p>
+                            <button type="button" class="btn btn-default-outline pull-right" aria-label="Left Align" ng-click="deleteTodo(task, list)">
+                              <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <form class="add-item" ng-submit="createTodo(list)" dnd-nodrag>
+                <button class="btn btn-success" type="submit">Dodaj zadanie</button>
+                <input type="text" class="new-item" ng-model="list.title">
+            </form>
+    </div>
+
+    </section>
+</div>

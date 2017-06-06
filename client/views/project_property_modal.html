@@ -1,0 +1,62 @@
+<div class="modal" role="dialog" id="deleteBookmarkModal">
+  <aside class="modal-sidebar">
+    <ul>
+      <li><input type="submit" class="btn btn-danger" value="Usuń zadanie" ng-click="deleteProject(clickedProject)"></li>
+      <li><input type="submit" class="btn btn-xs btn-primary" value="Dodaj użytkowników"></li>
+    </ul>
+  </aside>
+  <div class="modal-body">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">{{clickedProject.name}}</h3>
+        <p class="item-date">Ukończenie zadania: {{clickedProject.deadline | date:'dd/MM/yyyy'}}</p>
+    </div>
+
+    <section class="modal-attachments">
+      <div class="attachments">
+        <form ng-submit="submit()">
+          <legend class="attachment-title">Załączniki</legend>
+          <div>
+            <label for="name" class="modal-attachment-label">Nazwa pliku:</label>
+            <input type="text" name="name" id="name" ng-model="upload.name" required class="modal-attachment-name"/>
+          </div>
+          <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+            <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+            <span class="input-group-addon btn btn-xs btn-default btn-file"><span class="fileinput-new">Wybierz plik</span><span class="fileinput-exists">Zmień</span><input type="file" name="file" id="file" ng-model="upload.file" ngf-select ngf-max-size="25MB" required></span>
+            <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Wyczyść</a>
+          </div>
+          <input class="btn btn-primary btn-md" type="submit" value="Załącz plik!"/>
+        </form>
+      </div>
+      <h2></h2>
+      <ul class="attachments-list">
+        <li ng-repeat="upload in uploads | filter:{projectId: clickedProject._id}">
+          <p>{{upload.name}}</p>
+          <span class="glyphicon glyphicon-remove gl-rem" ng-click="deleteUploaded(upload)"></span>
+          <a ng-href='{{upload.file.path + "/" + upload.file.originalname}}'>{{upload.file.originalname}}</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="modal-comments">
+        <div class="comments-list">
+          <h3 class="modal-title">Aktywność</h3>
+            <ul class="comments">
+                <li class="comment-list-item" ng-repeat="comment in clickedProject.comments track by $index">
+                    <p class="comment-item">{{comment}}</p>
+                    <p class="comment-sign">{{username}}</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <form role="form" class="comment-form add-comment" ng-submit="addComment(comment, clickedProject)">
+        <div class="comment-container">
+            <h4>Dodaj komentarz</h4>
+            <textarea class="modal-comment-input" rows="2" id="textArea" placeholder="Zostaw wiadomość..." ng-model="comment"></textarea>
+            <div class="project-buttons">
+                <button type="submit" class="btn btn-success btn-xs" value="Dodaj">Dodaj</button>
+            </div>
+        </div>
+    </form>
+
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<html ng-app="myApp">
+
+<head>
+	<title>BookStore</title>
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,800i" rel="stylesheet">
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bower_components/AngularJS-Toaster/toaster.min.css">
+	<link href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
+	<link href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a href="/" class="navbar-brand">KanbaNello</a>
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+			</div>
+			<div class="navbar-collapse collapse" id="navbar-main">
+				<ul class="nav navbar-nav navbar-right"></ul>
+			</div>
+		</div>
+	</div>
+	<toaster-container toaster-options="{'close-button': true,'time-out':3000}"></toaster-container>
+
+	<div ui-view=""></div>
+
+	</div>
+	<!-- /.container -->
+	<script src="/bower_components/jquery/dist/jquery.js"></script>
+	<script src="/bower_components/angular/angular.js"></script>
+	<script src="/bower_components/angular-locale_pl-pl.js"></script>
+	<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
+	<script src="/bower_components/angular-animate/angular-animate.min.js"></script>
+	<script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="/bower_components/moment/moment.js"></script>
+	<script src="/bower_components/ng-file-upload/ng-file-upload-all.min.js"></script>
+	<script src="/bower_components/angular-strap/dist/angular-strap.min.js"></script>
+	<script src="/bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
+	<script src="/bower_components/angular-drag-and-drop-lists.min.js"></script>
+	<script src="/bower_components/ui-bootstrap.min.js"></script>
+	<script src="/bower_components/AngularJS-Toaster/toaster.min.js"></script>
+	<script src="/bower_components/angular-cookies/angular-cookies.js"></script>
+	<script src="/jQuery.js"></script>
+	<script src="/services/services.js"></script>
+	<script src="/factory/factory.js"></script>
+	<script src="/controllers/SettingsController.js"></script>
+	<script src="/controllers/LoginController.js"></script>
+	<script src="/controllers/SignupController.js"></script>
+	<script src="/controllers/ProjectsController.js"></script>
+	<script src="/controllers/BoardsController.js"></script>
+	<script src="/controllers/LogoutController.js"></script>
+	<script src="/app.js"></script>
+</body>
+
+</html>

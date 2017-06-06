@@ -1,0 +1,16 @@
+<div class="container  bg-img">
+
+    <form class="form-horizontal col-lg-12 col-xs-8 col-xs-offset-2 col-lg-offset-0 form-container" ng-submit="login(user.email,user.password)">
+      <fieldset class="vcenter">
+        <h1 class="signup-title">Zaloguj się</h1>
+        <div class="form-container">
+          <input autofocus ng-model="user.email" type="email" required class="form-control input-lg" placeholder="E-mail" />
+        </div>
+        <div class="form-container">
+          <input ng-model="user.password" id="inputPassword" type="password" required class="form-control input-lg" placeholder="Hasło" />
+        </div>
+        <div class="form-button">
+          <button type="submit" class="btn btn-primary">Akceptuj</button>
+        </div>
+    </form>
+</div>
